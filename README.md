@@ -1,6 +1,6 @@
 # **HunyuanVideo Keyframe Control Lora**
 
-This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for our paper exploring HunyuanVideo.
+This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for our experiments on HunyuanVideo Keyframe Control Lora.
 
 ## 🔥🔥🔥 News!!
 
