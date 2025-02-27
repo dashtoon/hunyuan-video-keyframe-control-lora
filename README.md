@@ -26,7 +26,7 @@ HunyuanVideo Keyframe Control Lora is an adapter for HunyuanVideo T2V model for 
 | <a href="https://content.dashtoon.ai/stability-images/0cb84780-4fdf-4ecc-ab48-12e7e1055a39.mp4"><img src="https://content.dashtoon.ai/stability-images/5298cf0c-0955-4568-935a-2fb66045f21d.png" width="200" alt="Click to view video"></a> | <img src="https://content.dashtoon.ai/stability-images/5298cf0c-0955-4568-935a-2fb66045f21d.png" width="200" alt="Image 1"> | <img src="https://content.dashtoon.ai/stability-images/722a4ea7-7092-4323-8e83-3f627e8fd7f8.png" width="200" alt="Image 2"> |
 | <a href="https://content.dashtoon.ai/stability-images/ce12156f-0ac2-4d16-b489-37e85c61b5b2.mp4"><img src="https://content.dashtoon.ai/stability-images/69d9a49f-95c0-4e85-bd49-14a039373c8b.png" width="250" alt="Click to view video"></a> | <img src="https://content.dashtoon.ai/stability-images/69d9a49f-95c0-4e85-bd49-14a039373c8b.png" width="250" alt="Image 1"> | <img src="https://content.dashtoon.ai/stability-images/0cef7fa9-e15a-48ec-9bd3-c61921181802.png" width="250" alt="Image 2"> |
 
-## 📜 Requirements
+## 📜 Recommeded Settings
 
 1. The model works best on human subjects. Single subject images work slightly better.
 2. It is recommended to use the following image generation resolutions `720x1280`, `544x960`, `1280x720`, `960x544`.
