@@ -16,6 +16,7 @@ from diffusers import FlowMatchEulerDiscreteScheduler, HunyuanVideoPipeline
 from diffusers.callbacks import MultiPipelineCallbacks, PipelineCallback
 from diffusers.models import AutoencoderKLHunyuanVideo, HunyuanVideoTransformer3DModel
 from diffusers.models.attention import Attention
+from diffusers.models.embeddings import apply_rotary_emb
 from diffusers.models.transformers.transformer_hunyuan_video import HunyuanVideoPatchEmbed
 from diffusers.pipelines.hunyuan_video.pipeline_hunyuan_video import DEFAULT_PROMPT_TEMPLATE, retrieve_timesteps
 from diffusers.pipelines.hunyuan_video.pipeline_output import HunyuanVideoPipelineOutput
