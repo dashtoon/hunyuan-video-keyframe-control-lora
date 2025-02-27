@@ -14,6 +14,8 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 - [🚀 Inference](#-inference)
 - [🚀 Training](#-training)
 
+---
+
 ## 🔥🔥🔥 News!!
 
 - 27 February 2025: We release the training code of HunyuanVideo Keyframe Control Lora and [Blog]().
