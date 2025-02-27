@@ -1,0 +1,75 @@
+experiment:
+  output_dirpath: "./i2v_outputs"
+  random_seed: 4201
+  name: "i2v"
+  run_id: "my_first_experiment"
+
+model:
+  pretrained_model_name_or_path: "hunyuanvideo-community/HunyuanVideo"
+  revision: null
+  variant: null
+
+data:
+  local:
+  batch_size: 1
+  video_key: "video"
+  caption_key: "caption"
+  latents_key: "latents"
+  prompt_embeds_key: "prompt_embeds"
+  latents_cond_key: "latents_cond"
+  prompt_attention_mask_key: "prompt_attention_mask"
+  pooled_prompt_embeds_key: "pooled_prompt_embeds"
+
+  dataloader_kwargs:
+    drop_last: false
+    num_workers: 8
+    persistent_workers: true
+    pin_memory: true
+    prefetch_factor: 2
+
+  streaming_kwargs:
+    shuffle: true
+    batching_method: "per_stream"
+    num_canonical_nodes: 8
+
+network:
+  lora_rank: 128
+  lora_alpha: 128
+  lora_dropout: 0.00
+  init_lora_weights: true
+  train_norm_layers: false
+  lora_layers: "all-linear"
+
+hparams:
+  caption_dropout_p: 0.00
+  mixed_precision: "bf16"
+  gradient_checkpointing: true
+  gradient_accumulation_steps: 1
+  learning_rate: 2e-4
+  optimizer_type: "optimi-stableadamw"
+  optimizer_args: ["weight_decay=1e-2", "eps=1e-8", "betas=(0.9, 0.95)"]
+  max_grad_norm: 0.0
+  lr_scheduler: "constant_with_warmup"
+  lr_warmup_steps: 100
+  guidance_scale: 1.0
+  num_train_epochs: 1
+  max_train_steps: null
+  gradient_precision: "accelerator"
+
+  flow_match:
+    weighting_scheme: "none"
+    timestep_sampling: "logit_normal"
+    sigmoid_scale: 1.0
+    logit_mean: 0.0
+    logit_std: 1.0
+    discrete_flow_shift: 7.0
+
+  ema:
+    use_ema: true
+    ema_device: "accelerator"
+    ema_decay: 0.99
+
+checkpointing:
+  save_every_n_steps: 500
+  save_last_n_steps: 1500
+  resume_from_checkpoint: null

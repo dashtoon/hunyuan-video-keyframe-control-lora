@@ -1,0 +1,10 @@
+[tool.isort]
+profile = "black"
+line_length = 120
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.black]
+line-length = 120
+exclude = "(.eggs|.git|.hg|.mypy_cache|.venv|_build|buck-out|build|dist|_notebooks/.*)"
