@@ -88,6 +88,84 @@ python hv_control_lora_inference.py \
 
 ## Training
 
+### Dataset Preparation
+
+It is recommended to have atleast 1 GPU with 80GB of VRAM. We use mosaic-ml streaming for caching our data. We expect our original data in the following format. Running the tree command, you should see:
+
+```
+dataset
+├── metadata.csv
+├── videos
+    ├── 00000.mp4
+    ├── 00001.mp4
+    ├── ...
+```
+
+The csv can contain any number of columns, but due to limited support at the moment, we only make use of prompt and video columns. The CSV should look like this:
+
+```
+caption,video_file,other_column1,other_column2
+A black and white animated sequence featuring a rabbit, named Rabbity Ribfried, and an anthropomorphic goat in a musical, playful environment, showcasing their evolving interaction.,videos/00000.mp4,...,...
+```
+
+For the above format you would run the following command for starting to cache the dataset:
+
+```shell
+python scripts/hv_cache_dataset.py \
+    --csv "dataset/metadata.csv" \
+    --base_dir "dataset" \
+    --video_column video_file \
+    --caption_column "caption" \
+    --output_dir "dataset/mds_cache" \
+    --bucket_reso \
+        "1280x720x33" "1280x720x65" "1280x720x97" "960x544x33" "960x544x65" "960x544x97" \
+        "720x1280x33" "720x1280x65" "720x1280x97" "544x960x33" "544x960x65" "544x960x97" \
+    --min_bucket_count 100 \
+    --head_frame 0
+```
+
+- `bucket_reso` : this specifies the bucket resolutions to train on in the format of WxHxF.
+- `head_frame`: the intial frame from where to start extracting from a video
+
+**NOTE:** It is recommened to first convert your video into separate scenes and ensure there is continuity between scenes. [This](https://github.com/aigc-apps/EasyAnimate/tree/main/easyanimate/video_caption) is a good starting point for video dataset preparation.
+
+The next commanded will start caching the LLM embeds and the VAE states.
+
+```shell
+NUM_GPUS=8
+MIXED_PRECISION="bf16"
+accelerate launch --num_processes=$NUM_GPUS --mixed_precision=$MIXED_PRECISION --main_process_port=12345 \
+    scripts/hv_precompute_latents_dist.py \
+        --pretrained_model_name_or_path="hunyuanvideo-community/HunyuanVideo" \
+        --mds_data_path "dataset/mds_cache" \
+        --output_dir "dataset/mds_cache_latents" \
+        --recursive
+```
+
+Now you need to add the path to all the mds latent folders in `./configs/config_defaults.yaml` config file under `data.local` as a list. The latent_cache should be stored unfer `--output_dir` folder as `1280x720x33_00` folders. Where `1280` is the width of the video, `720` is the height of the video and `33` is the framerate of the video and `00` is the gpu id.
+Now we are ready to start training!
+
+### Starting a traning run
+
+```shell
+NUM_GPUS=8
+MIXED_PRECISION="bf16"
+EXPERIMENT_NAME="my_first_run"
+OUTPUT_DIR="outputs/"
+CONFIG_PATH="./configs/config_defaults.yaml"
+NUM_EPOCHS=1
+
+accelerate launch --num_processes=$NUM_GPUS --mixed_precision=$MIXED_PRECISION --main_process_port=12345 \
+    hv_train_control_lora.py \
+        --config_path $CONFIG_PATH \
+        --experiment.run_id=$EXPERIMENT_NAME \
+        --experiment.output_dirpath=$OUTPUT_DIR \
+        --network.train_norm_layers=False \
+        --network.lora_dropout=0.05 \
+        --hparams.ema.use_ema=False \
+        --hparams.num_train_epochs=1
+```
+
 ## Acknowledgements
 
 - We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [HuggingFace](https://huggingface.co) repositories, for their open research and exploration.
