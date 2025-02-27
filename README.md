@@ -18,7 +18,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 
 ## 🔥🔥🔥 News!!
 
-- 27 February 2025: We release the training code of HunyuanVideo Keyframe Control Lora and [Blog]().
+- 27 February 2025: We release the training code of HunyuanVideo Keyframe Control Lora and [Blog](https://insiders.dashtoon.com/introducing-hunyuan-keyframe-lora-open-source-keyframe-based-video-generation/).
 - 24 February 2025: We release the inference code and model weights of HunyuanVideo Keyframe Control Lora . [Download](https://huggingface.co/dashtoon/hunyuan-video-keyframe-control-lora/tree/main).
 
 ## Abstract
