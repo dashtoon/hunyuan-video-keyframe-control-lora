@@ -1,6 +1,18 @@
 # **HunyuanVideo Keyframe Control Lora**
 
+---
+
 This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for our experiments on HunyuanVideo Keyframe Control Lora.
+
+## Contents
+
+- [🔥🔥🔥 News!!](#-news)
+- [Abstract](#-abstract)
+- [Demo](#-demo)
+- [📜 Recommeded Settings](#-recommeded-settings)
+- [🛠️ Dependencies and Installation](#-dependencies-and-installation)
+- [🚀 Inference](#-inference)
+- [🚀 Training](#-training)
 
 ## 🔥🔥🔥 News!!
 
@@ -53,7 +65,7 @@ Conda's installation instructions are available [here](https://docs.anaconda.com
 bash setup_env.sh
 ```
 
-## Inference
+## 🚀 Inference
 
 The model weights can be downloaded from [Huggingface](https://huggingface.co/dashtoon/hunyuan-video-keyframe-control-lora)
 
@@ -86,7 +98,7 @@ python hv_control_lora_inference.py \
     --output output.mp4
 ```
 
-## Training
+## 🚀 Training
 
 ### Dataset Preparation
 
