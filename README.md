@@ -125,7 +125,7 @@ A black and white animated sequence featuring a rabbit, named Rabbity Ribfried, 
 For the above format you would run the following command for starting to cache the dataset:
 
 ```shell
-python scripts/hv_cache_dataset.py \
+python tools/hv_cache_dataset.py \
     --csv "dataset/metadata.csv" \
     --base_dir "dataset" \
     --video_column video_file \
@@ -149,7 +149,7 @@ The next commanded will start caching the LLM embeds and the VAE states.
 NUM_GPUS=8
 MIXED_PRECISION="bf16"
 accelerate launch --num_processes=$NUM_GPUS --mixed_precision=$MIXED_PRECISION --main_process_port=12345 \
-    scripts/hv_precompute_latents_dist.py \
+    tools/hv_precompute_latents_dist.py \
         --pretrained_model_name_or_path="hunyuanvideo-community/HunyuanVideo" \
         --mds_data_path "dataset/mds_cache" \
         --output_dir "dataset/mds_cache_latents" \
