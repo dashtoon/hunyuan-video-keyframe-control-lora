@@ -80,19 +80,19 @@ You can run inference using the provided script. The script uses `flash_attn` bu
 - Tested operating system: Linux
 
 ```shell
-export BASE_MODEL = "hunyuanvideo-community/HunyuanVideo"
-export LORA_PATH = "<PATH TO DOWNLOADED CONTROL LORA>"
-export IMAGE_1 = "<PATH TO THE FIRST FRAME>"
-export IMAGE_2 = "<PATH TO THE LAST FRAME>"
-export PROMPT = "<A BEAUTIFUL PROMPT>"
-export HEIGHT = 960
-export WIDHT = 544
-export n_FRAMES = 33
+export BASE_MODEL="hunyuanvideo-community/HunyuanVideo"
+export LORA_PATH="<PATH TO DOWNLOADED CONTROL LORA>"
+export IMAGE_1="<PATH TO THE FIRST FRAME>"
+export IMAGE_2="<PATH TO THE LAST FRAME>"
+export PROMPT="<A BEAUTIFUL PROMPT>"
+export HEIGHT=960
+export WIDTH=544
+export n_FRAMES=33
 
 python hv_control_lora_inference.py \
     --model $BASE_MODEL \
     --lora $LORA_PATH \
-    --frame1 $IMAGE_1 --frame2 $IMAGE_2 --prompt $PROMPT --frames $n_FRAMES \
+    --frame1 $IMAGE_1 --frame2 $IMAGE_2 --prompt "$PROMPT" --frames $n_FRAMES \
     --height $HEIGHT --width $WIDTH \
     --steps 50 \
     --guidance 6.0 \
