@@ -184,7 +184,7 @@ accelerate launch --num_processes=$NUM_GPUS --mixed_precision=$MIXED_PRECISION -
 
 - We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [HuggingFace](https://huggingface.co) repositories, for their open research and exploration.
 
-- - We build on top of a body of great open-source libraries: transformers, accelerate, peft, diffusers, bitsandbytes, torchao, deepspeed, mosaicml-streaming -- to name a few.
+- We build on top of a body of great open-source libraries: transformers, accelerate, peft, diffusers, bitsandbytes, torchao, deepspeed, mosaicml-streaming -- to name a few.
 
 ## Star History
 
